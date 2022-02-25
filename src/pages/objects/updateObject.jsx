@@ -18,8 +18,6 @@ import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { objectValidation } from '../../utils/schemmas/objectValidation';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import CloseIcon from '@mui/icons-material/Close';
 import { EditorText } from '../../components/editorText/';
 import {Cancel} from '../../components/cancel/index';
@@ -38,9 +36,14 @@ export const UpdateObject = () => {
             name_en: "",
             type: null,
             status: null,
+            video1: "",
+            video2: "",
+            video3: "",
+            video4: "",
+            video5: "",
+
         },
         mode: 'onSubmit',
-        reValidateMode: 'onChange',
         resolver: yupResolver(objectValidation)
     })
 
@@ -57,11 +60,6 @@ export const UpdateObject = () => {
     const [loading, setLoading] = React.useState(false)
     const [location, setLocation] = React.useState([])
     const [img, setImg] = React.useState([]);
-    const [video1, setVideo1] = React.useState("")
-    const [video2, setVideo2] = React.useState("")
-    const [video3, setVideo3] = React.useState("")
-    const [video4, setVideo4] = React.useState("")
-    const [video5, setVideo5] = React.useState("")
 
     const [objectTaskRu, setObjectTaskRu] = React.useState(null)
     const [objectTaskKz, setObjectTaskKz] = React.useState(null)
@@ -235,11 +233,11 @@ export const UpdateObject = () => {
             setLength(list.length)
             setVolume(list.volume)
             setImg(list.photos)
-            setVideo1(list.video[0])
-            setVideo2(list.video[1])
-            setVideo3(list.video[2])
-            setVideo4(list.video[3])
-            setVideo5(list.video[4])
+            createObjectForm.setValue( "video1", list.video[0] );
+            createObjectForm.setValue( "video2", list.video[1] );
+            createObjectForm.setValue( "video3", list.video[2] );
+            createObjectForm.setValue( "video4", list.video[3] );
+            createObjectForm.setValue( "video5", list.video[4] );
             setObjectTaskRu(list.goal_ru)
             setObjectTaskKz(list.goal_kk)
             setObjectTaskEn(list.goal_kk)
@@ -359,9 +357,9 @@ export const UpdateObject = () => {
                 project_draft_kk: draftProjectKz,
                 project_draft_en: draftProjectEn,
                 photos: img,
-                video: video1 || video2 || video3 || video4 || video5 ? [video1, video2, video3, video4, video5] : null
+                video: createObjectForm.getValues('video1') || createObjectForm.getValues('video2') || createObjectForm.getValues('video3') || createObjectForm.getValues('video4') || createObjectForm.getValues('video5') ? [list.video1, list.video2, list.video3, list.video4, list.video5] : null
             }
-            let obj = await ObjectsApi.updateObject(id, object)
+            await ObjectsApi.updateObject(id, object)
             setIsSaved(true)
             setLoading(false)
         } catch(error) {
@@ -589,40 +587,35 @@ export const UpdateObject = () => {
                                 <p className = "objectCreate-item__title"> {t('youTubeLink')} </p>
                                 <p></p>
                                 <input 
-                                    type = "text"
-                                    value = {video1} 
-                                    onChange = {(e) => setVideo1(e.target.value)}
+                                    name = "video1" 
+                                    {...createObjectForm.register('video1')}
                                     className = {'forms-input'}
                                 />
                                 <input 
-                                    type = "text"
-                                    value = {video2} 
-                                    onChange = {(e) => setVideo2(e.target.value)}
+                                    name = "video2" 
+                                    {...createObjectForm.register('video2')}
                                     className = {'forms-input'}
                                 />
                                 <input 
-                                    type = "text"
-                                    value = {video3} 
-                                    onChange = {(e) => setVideo3(e.target.value)}
+                                    name = "video3" 
+                                    {...createObjectForm.register('video3')}
                                     className = {'forms-input'}
                                 />
                                 <input 
-                                    type = "text"
-                                    value = {video4} 
-                                    onChange = {(e) => setVideo4(e.target.value)}
+                                    name = "video4" 
+                                    {...createObjectForm.register('video4')}
                                     className = {'forms-input'}
                                 />
-                                <input 
-                                    type = "text"
-                                    value = {video5} 
-                                    onChange = {(e) => setVideo5(e.target.value)}
+                                <input
+                                    name = "video5" 
+                                    {...createObjectForm.register('video5')}
                                     className = {'forms-input'}
                                 />
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
                                 <EditorText changeText = { changeObjectTaskRu } text = {objectTaskRu} title = {t('objectTaskRu')}/>
                                 <EditorText changeText = { changeObjectTaskKz } text = {objectTaskKz} title = {t('objectTaskKz')} />
-                                <EditorText changeText = { changeObjectTaskEn } text = {objectTaskKz} title = {t('objectTaskKz')} />
+                                <EditorText changeText = { changeObjectTaskEn } text = {objectTaskEn} title = {t('objectTaskKz')} />
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
                                 <EditorText changeText = { changeExpectedResultRu } text = {expectedResultRu} title = {t('expectedResultRu')}/>

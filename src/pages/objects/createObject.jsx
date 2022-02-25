@@ -210,7 +210,9 @@ export const CreateObject = () => {
         })
         return null
     }
-
+    React.useEffect(() => {
+        document.addEventListener('touchstart', {passive: true});
+    },[])
     const [isMagistral, setIsMagistral] = React.useState(false)
     let [img, setImg] = React.useState([]);
 
@@ -297,7 +299,7 @@ export const CreateObject = () => {
                 photos: img.length === 0 ? null : img,
                 video: video1 || video2 || video3 || video4 || video5 ? [video1, video2, video3, video4, video5] : null
             }
-            let obj = await ObjectsApi.setObject(object)
+            await ObjectsApi.setObject(object)
             setIsSaved(true)
             setLoading(false)
         } catch(error) {
@@ -305,7 +307,7 @@ export const CreateObject = () => {
             setLoading(true)
         }
     }
-
+    
     return (
         <>
             <Helmet>
