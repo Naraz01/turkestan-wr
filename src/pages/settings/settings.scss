@@ -1,0 +1,32 @@
+.settings {
+    padding-bottom: 50px;
+    &-head {
+        display: flex;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    &-data {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    &-input {
+        &__text {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #969BAB;
+            padding-top: 15px;
+            padding-bottom: 10px;
+        }
+    }
+    &-footer {
+        border-top: 1px solid #EEEFF4;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+        padding-top: 15px;
+    }
+}

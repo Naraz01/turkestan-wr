@@ -1,0 +1,33 @@
+.header {
+  border-bottom: 1px solid #E2E5E6;
+  padding: 22px 0;
+  position: fixed;
+  width: 100%;
+  max-width: 100%;
+  background-color: #FFFFFF;
+  z-index: 99999999 !important;
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-left {
+    display: flex;
+    align-items: center;
+  }
+  &-right {
+    display: flex;
+    align-items: center;
+  }
+  &-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #22577E;
+  }
+}
+@import "language";
+@import "menu";
+@import "../auth/auth.scss";
+

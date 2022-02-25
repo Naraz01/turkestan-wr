@@ -1,0 +1,45 @@
+.maps {
+    &-container {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        overflow: hidden;
+        &__little {
+            height: 800px;
+        }
+        &__full {
+            height: calc(100vh - 85px)
+        }
+    }
+    &-downloand {
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+    }
+    &-fullScreen {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        cursor: pointer;
+    }
+}
+.myDivIcon{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #ffff;
+    text-transform: uppercase;
+    &-blue{
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 21px;
+        color: #9DEAFF;
+    }
+    &-white{
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 16px;
+        color: #FFFFFF;
+        width: fit-content !important;
+    }
+}

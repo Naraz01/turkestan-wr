@@ -1,0 +1,53 @@
+@media (max-width: 992px) {
+    .menu {
+        padding-right: 25px;
+    }
+    .header {
+        &-title {
+            font-size: 22px;
+        }
+    }
+    .language {
+        &-items {
+          margin-right: 25px;
+        }
+        &-item {
+          padding: 5px 10px;
+        }
+    }  
+    .menu {
+        &-items {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+        &-content {
+            height: calc(100% - 81px);
+            overflow-y: scroll;
+        }
+    }
+    .slider {
+        &-modal {
+            &__img {
+                width: 80%;
+                height: calc(100% - 40%);
+            }
+        }        
+    }
+    .card {
+        max-height: calc(100% - 40px);
+    }
+    .modal {
+        &-slider {
+            &__prev {
+                left: 40%;
+                top: 90%;
+                transform: translate(-40%, -90%);
+            }
+            &__next {
+                right: 40%;
+                top: 90%;
+                transform: translate(-40%, -90%);
+            }
+        }
+    }
+}

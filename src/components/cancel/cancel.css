@@ -1,0 +1,21 @@
+.cancel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 30px;
+  border: 1px solid red;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: red;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: red;
+  color: #ffffff;
+}
+/*# sourceMappingURL=cancel.css.map */

@@ -1,0 +1,18 @@
+.footer {
+  background-color: #22577E;
+  color: #ffffff;
+  padding: 20px 0;
+  &-left {
+    display: flex;
+  }
+  &-info {
+    display: flex;
+    align-items: center;
+    span {
+      padding-left: 10px;
+    }
+  }
+  &-info:first-child {
+    margin-right: 22px;
+  }
+}

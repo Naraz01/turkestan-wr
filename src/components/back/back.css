@@ -1,0 +1,19 @@
+.back {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 30px;
+  padding: 10px 20px;
+  background-color: #22587ede;
+  color: #fff;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.back:hover {
+  background-color: #1b4e72;
+}
+/*# sourceMappingURL=back.css.map */

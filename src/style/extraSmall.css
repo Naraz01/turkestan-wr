@@ -1,0 +1,66 @@
+@media (max-width: 576px) {
+  .card {
+    width: calc(100% - 36px) !important;
+    max-height: calc(100% - 36px) !important;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .card-title {
+    font-size: 25px;
+    line-height: 32px;
+  }
+  .card-btn {
+    display: block;
+  }
+  .card-btn .downloadBtn {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+  .card-btn .moreBtn {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .maps-downloand {
+    left: 30px;
+    bottom: 30px;
+  }
+  .ReactModal__Content .slider-modal__img {
+    width: 95% !important;
+    height: calc(100% - 55%) !important;
+  }
+  .ReactModal__Content .modal-slider__prev {
+    left: 30%;
+    top: 85%;
+    -webkit-transform: translate(-30%, -85%);
+            transform: translate(-30%, -85%);
+  }
+  .ReactModal__Content .modal-slider__next {
+    right: 30%;
+    top: 85%;
+    -webkit-transform: translate(-30%, -85%);
+            transform: translate(-30%, -85%);
+  }
+  .slider-panel {
+    border-radius: 15px;
+    padding: 8px 10px;
+  }
+  .slider-panel__card {
+    padding: 8px 9px !important;
+  }
+  .slider-panel__number {
+    font-size: 16px;
+    padding: 0 8px;
+  }
+  .slider-reservoir {
+    height: 350px !important;
+  }
+  .title {
+    font-size: 27px;
+    line-height: 40px;
+  }
+}
+/*# sourceMappingURL=extraSmall.css.map */

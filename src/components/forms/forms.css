@@ -1,0 +1,27 @@
+.forms-input {
+  border: 0.1em solid #EEEFF4;
+  border-radius: 2px;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 10px;
+  background-color: #EEEFF4;
+  outline: none;
+}
+
+.forms-input:focus {
+  border: 0.1em solid #22577E;
+}
+
+.forms-input__file {
+  background-color: #EEEFF4;
+  border: 2px dotted #bcbdc2;
+  width: 100%;
+  max-width: 100%;
+  height: 100px;
+}
+
+.forms-input__error {
+  border: 1px solid red;
+}
+/*# sourceMappingURL=forms.css.map */

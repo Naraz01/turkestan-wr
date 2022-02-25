@@ -1,0 +1,28 @@
+.saved {
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  background-color: #fff;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 3px solid #03cc14;
+  z-index: 9999999999999999999999999999999;
+  max-width: 300px;
+  width: 300px;
+}
+
+.saved-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.saved-left p {
+  padding: 0 10px;
+}
+/*# sourceMappingURL=saved.css.map */

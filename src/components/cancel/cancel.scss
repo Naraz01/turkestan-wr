@@ -1,0 +1,15 @@
+.cancel {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    border: 1px solid red;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: red;
+    margin-right: 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: red;
+        color: #ffffff;
+    }
+}

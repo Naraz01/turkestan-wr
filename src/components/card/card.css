@@ -1,0 +1,165 @@
+.card {
+  max-height: calc(100% - 60px);
+  width: 514px;
+  max-width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 20px 15px 20px 20px;
+  z-index: 9;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 30px;
+  overflow-y: auto;
+  direction: ltr;
+  scrollbar-color: #5584AC;
+  scrollbar-width: thin;
+}
+
+.card::-webkit-scrollbar {
+  width: 10px;
+}
+
+.card::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  border-radius: 50px;
+}
+
+.card::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background-color: #EEEEEE;
+}
+
+.card-type {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #969BAB;
+  text-align: left;
+}
+
+.card-title {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 40px;
+  text-align: left;
+}
+
+.card-photo {
+  height: 250px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.card-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #EEEFF4;
+}
+
+.card-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card-close {
+  cursor: pointer;
+}
+
+.CardInfo {
+  margin-top: 15px;
+}
+
+.CardInfo-title {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #18191F;
+  text-align: left;
+}
+
+.CardInfo-text {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #474A57;
+  text-align: left;
+}
+
+.downloadBtn {
+  font-family: 'Segoe UI';
+  background: #FC997C;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.downloadBtn a {
+  color: #FFFFFF !important;
+}
+
+.downloadBtn i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 10px;
+}
+
+.moreBtn {
+  background: #5584AC;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF !important;
+  margin-left: 10px;
+}
+
+.moreBtn a {
+  color: #FFFFFF !important;
+}
+
+.leaflet-fade-anim .leaflet-popup {
+  opacity: 1 !important;
+}
+/*# sourceMappingURL=card.css.map */

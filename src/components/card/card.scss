@@ -1,0 +1,131 @@
+.card {
+  max-height: calc(100% - 60px);
+  width: 514px;
+  max-width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 20px 15px 20px 20px;
+  z-index: 9;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  overflow-y: auto;
+  direction: ltr;
+  scrollbar-color: #5584AC;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: #EEEEEE;
+  }
+  &-type {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #969BAB;
+    text-align: left;
+  }
+  &-title {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: left;
+  }
+  &-photo {
+    height: 250px;
+    width: 100%;
+    max-width: 100%;
+  }
+  &-btn {
+    display: flex;
+    justify-content: right;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #EEEFF4;
+  }
+  &-head {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-close {
+    cursor: pointer;
+  }
+}
+.CardInfo {
+  margin-top: 15px;
+  &-title {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #18191F;
+    text-align: left;
+  }
+  &-text {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #474A57;
+    text-align: left;
+  }
+}
+  .downloadBtn {
+    font-family: 'Segoe UI';
+    background: #FC997C;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    a {
+      color: #FFFFFF !important;
+    }
+    i {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+  }
+  .moreBtn {
+    background: #5584AC;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF !important;
+    margin-left: 10px;
+    a {
+      color: #FFFFFF !important;
+    }
+  }
+
+.leaflet-fade-anim .leaflet-popup {
+  opacity: 1 !important;
+}

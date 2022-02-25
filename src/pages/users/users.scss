@@ -1,0 +1,105 @@
+.users {
+    padding-bottom: 50px;
+    &-head {
+        display: flex;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    &-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    &-item {
+        padding: 5px 5px;
+        &__update {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    &-items {
+        display: grid;
+        grid-template-columns: 50px 1fr 1fr 100px;
+        border-bottom: 1px solid #eeeeee;
+    }
+    &-actions {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    &-update {
+        background-color: #00ffff29;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    &-delete {
+        background-color: #e6010142;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+    &-create {
+        &__passport {
+            background-color: #16c01165;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            margin-top: 15px;
+            &-rigth {
+                cursor: pointer;
+            }
+        }
+    }
+}
+.user {
+    &-delete {
+        &__modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            box-shadow: 0px 0px 1px 0px #665d5d;
+            display: block;
+            padding: 10px 20px;
+            &-yes {
+                background-color: #0ece28;
+                color: #fff;
+                margin-right: 20px;
+                padding: 10px 40px;
+            } 
+            &-no {
+                background-color: red;
+                color: #fff;
+                padding: 8px 40px;
+            }
+            &-footer {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 15px;
+                margin-bottom: 20px;
+            }
+            &-content {
+                font-size: 16px;
+                font-weight: 600;
+                font-style: normal;
+            }
+            &-head {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.footer {
+  background-color: #22577E;
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+.footer-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer-info span {
+  padding-left: 10px;
+}
+
+.footer-info:first-child {
+  margin-right: 22px;
+}
+/*# sourceMappingURL=footer.css.map */

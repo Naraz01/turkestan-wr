@@ -1,0 +1,13 @@
+.back {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 10px 20px;
+    background-color: #22587ede;
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: #1b4e72;
+    }
+}

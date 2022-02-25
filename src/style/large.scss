@@ -1,0 +1,11 @@
+@media (max-width: 1200px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .slider{
+        &-reservoir {
+            height: 400px;
+        }
+    }
+}

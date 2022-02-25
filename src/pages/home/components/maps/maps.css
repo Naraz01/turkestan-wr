@@ -1,0 +1,53 @@
+.maps-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.maps-container__little {
+  height: 800px;
+}
+
+.maps-container__full {
+  height: calc(100vh - 85px);
+}
+
+.maps-downloand {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+.maps-fullScreen {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.myDivIcon {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+  color: #ffff;
+  text-transform: uppercase;
+}
+
+.myDivIcon-blue {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  color: #9DEAFF;
+}
+
+.myDivIcon-white {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+/*# sourceMappingURL=maps.css.map */

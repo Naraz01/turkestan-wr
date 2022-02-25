@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACN,gBAAgB,EAAE,OAAiB;EACnC,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,SAAS;EAClB,KAAK,EAAE,IAAI;EACX,YAAY,EAAE,IAAI;EAClB,MAAM,EAAE,OAAO;CAClB",
+    "sources": [
+        "resetBtn.scss"
+    ],
+    "names": [],
+    "file": "resetBtn.css"
+}

@@ -1,0 +1,104 @@
+html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *::before,
+  *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+    font-family: 'Segoe UI';
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  i {
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .pad-top {
+    padding-top: 89px;
+  }
+  .App {
+    height: 100vh;
+  }
+  .app-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .footer {
+    flex: 0 0 auto;
+  }
+  .backgroundColor {
+    background-color: #EEEFF4;
+    flex: 1 0 auto;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    cursor: pointer;
+    border: none;
+  }
+  .tabel-title {
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+  }
+  @import "./components/header/header";
+  @import "components/title/title";
+  @import "components/typography/typography";
+  @import "components/footer/footer";
+  @import "components/type/type";
+  @import "components/card/card";
+  @import "components/breadcrumbs/breadcrumbs";
+  @import "components/loading/loading.scss";
+  @import "components/forms/forms.scss";
+  @import "components/back/back.scss";
+  @import "components/cancel/cancel.scss";
+  @import "components/save/save.scss";
+  @import "components/add/add.scss";
+  @import "components/resetBtn/resetBtn.scss";
+  @import "components/pagination/pagination.scss";
+  @import "pages/reservoir/reservoir";
+  @import "pages/home/home";
+  @import "pages/settings/settings";
+  @import "pages/users/users.scss";
+  @import "pages/objects/objects.scss";
+  @import "style/extraSmall.scss";
+  @import "style/small.scss";
+  @import "style/medium.scss";
+  @import "style/large.scss";
+  @import 'style/screen.scss';
+  @import "components/saved/saved.scss";

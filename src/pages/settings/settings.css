@@ -1,0 +1,43 @@
+.settings {
+  padding-bottom: 50px;
+}
+
+.settings-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.settings-data {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.settings-input__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #969BAB;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.settings-footer {
+  border-top: 1px solid #EEEFF4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 15px;
+  padding-top: 15px;
+}
+/*# sourceMappingURL=settings.css.map */

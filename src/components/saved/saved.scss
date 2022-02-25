@@ -1,0 +1,19 @@
+.saved {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid #03cc14;
+    z-index: 9999999999999999999999999999999;
+    max-width: 300px;
+    width: 300px;
+    &-left {
+        display: flex;
+        p {
+            padding: 0 10px;
+        }
+    }
+}

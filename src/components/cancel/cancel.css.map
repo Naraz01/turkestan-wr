@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAC;EACJ,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,aAAa,EAAE,IAAI;EACnB,MAAM,EAAE,aAAa;EACrB,OAAO,EAAE,SAAS;EAClB,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAE,GAAG;EACV,YAAY,EAAE,IAAI;EAClB,MAAM,EAAE,OAAO;CAKlB;;AAdD,AAUI,OAVG,AAUF,MAAM,CAAC;EACJ,gBAAgB,EAAE,GAAG;EACrB,KAAK,EAAE,OAAO;CACjB",
+    "sources": [
+        "cancel.scss"
+    ],
+    "names": [],
+    "file": "cancel.css"
+}
