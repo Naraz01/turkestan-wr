@@ -4,8 +4,6 @@ import i18next from 'i18next';
 import { Helmet } from "react-helmet";
 import { Footer } from "../../components/footer";
 import { Back } from '../../components/back'
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { polyline } from "leaflet"
 import { divIcon } from 'leaflet';
@@ -371,9 +369,8 @@ export const CreateObject = () => {
                                     className = "objectCreate-list__select"
                                     {...createObjectForm.register('type')}
                                     onChange = {onSelectType}
-                                    defaultValue = ''
-                                >
-                                    <option disabled selected value className="option-delete"> </option>
+                                    >
+                                    <option disabled value = '0' className="option-delete"> </option>
                                     <option value = '1'> {t('reservoir')} </option>
                                     <option value = '2'> {t('channels')} </option>
                                     <option value = '3'> {t('citySystem')} </option>
@@ -387,9 +384,8 @@ export const CreateObject = () => {
                                     name = "status"
                                     className="objectCreate-list__select"
                                     {...createObjectForm.register('status')}
-                                    defaultValue = ''
-                                >
-                                    <option disabled selected value className="option-delete"> </option>
+                                    >
+                                    <option disabled value = '0' className="option-delete"> </option>
                                     <option value = '1'> {t('awaitingFunding')} </option>
                                     <option value = '2'> {t('planningStage')} </option>
                                     <option value = '3'> {t('underConstruction')} </option>
@@ -408,7 +404,7 @@ export const CreateObject = () => {
                                     className = "objectCreate-item__checkbox"
                                     id = {'scales'}
                                 /> 
-                                <label for="scales" className = "objectCreate-item__title"> {t('trunk')} </label>
+                                <label htmlFor = "scales" className = "objectCreate-item__title"> {t('trunk')} </label>
                             </div>
                         }
                         <div className = "objectCreate-item">

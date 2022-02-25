@@ -45,7 +45,7 @@ export const UpdateObject = () => {
     })
 
     const [data, setData] = React.useState();
-    const [selectType, setSelectType] = React.useState(null);
+    const [selectType, setSelectType] = React.useState('null');
     const onSelectType = (value) => {
         console.log(value.target.value)
         setSelectType(value.target.value)
@@ -434,33 +434,35 @@ export const UpdateObject = () => {
                         <div className = "objectCreate-lists">
                             <div className="objectCreate-list">
                                 <p className = "objectCreate-item__title"> {t('objectType')} *</p>
-                                <Select 
+                                <select 
                                     name = "type"
                                     className = "objectCreate-list__select"
                                     {...createObjectForm.register('type')}
                                     onChange = {onSelectType}
                                     value = {selectType}
                                 >
-                                    <MenuItem value = '1'> {t('reservoir')} </MenuItem>
-                                    <MenuItem value = '2'> {t('channels')} </MenuItem>
-                                    <MenuItem value = '3'> {t('citySystem')} </MenuItem>
-                                    <MenuItem value = '4'> {t('conservationFacilities')} </MenuItem>
-                                </Select>
+                                    <option disabled value = '0' className="option-delete"> </option>
+                                    <option value = '1'> {t('reservoir')} </option>
+                                    <option value = '2'> {t('channels')} </option>
+                                    <option value = '3'> {t('citySystem')} </option>
+                                    <option value = '4'> {t('conservationFacilities')} </option>
+                                </select>
                                 <p> {createObjectForm.formState.errors.type?.message} </p>
                             </div>
                             <div className="objectCreate-list">
                                 <p className = "objectCreate-item__title"> {t('objectStatus')} *</p>
-                                <Select 
+                                <select 
                                     name = "status"
                                     className="objectCreate-list__select"
                                     {...createObjectForm.register('status')}
                                     value = {selectType}
                                 >
-                                    <MenuItem value = '1'> {t('awaitingFunding')} </MenuItem>
-                                    <MenuItem value = '2'> {t('planningStage')} </MenuItem>
-                                    <MenuItem value = '3'> {t('underConstruction')} </MenuItem>
-                                    <MenuItem value = '4'> {t('finished')} </MenuItem>
-                                </Select>
+                                    <option disabled value = '0' className="option-delete"> </option>
+                                    <option value = '1'> {t('awaitingFunding')} </option>
+                                    <option value = '2'> {t('planningStage')} </option>
+                                    <option value = '3'> {t('underConstruction')} </option>
+                                    <option value = '4'> {t('finished')} </option>
+                                </select>
                                 <p> {createObjectForm.formState.errors.status?.message} </p>
                             </div>
                         </div>
@@ -474,7 +476,7 @@ export const UpdateObject = () => {
                                     className = "objectCreate-item__checkbox"
                                     id="scales"
                                 /> 
-                                <label className = "objectCreate-item__title" for="scales"> {t('trunk')} </label>
+                                <label className = "objectCreate-item__title" htmlFor = "scales"> {t('trunk')} </label>
                             </div>
                         }
                         <div className = "objectCreate-item">
@@ -516,7 +518,7 @@ export const UpdateObject = () => {
                                 </MapContainer>                              
                             </div>
                             {
-                                (selectType === null || selectType === '1' || selectType === '4') &&
+                                (selectType === 'null' || selectType === '1' || selectType === '4') &&
                                 <div className = "objectCreate-item">
                                     <p className = "objectCreate-item__title"> {t('volumeObject')}</p>
                                     <input 
