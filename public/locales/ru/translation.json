@@ -95,8 +95,9 @@
     "awaitingFunding": "В ожидании финансирования",
     "planningStage": "В стадии планирования",
     "preservation": "Cохранение",
-    "photography5": "Фотографии (мак. 5)",
+    "photography5": "Фотографии",
     "objectEditing": "Редактирование обьекта",
     "editUser": "Редактировать пользователя",
-    "savedSuccessfully": "Успешно сохранено"
+    "savedSuccessfully": "Успешно сохранено",
+    "noMore5MB": "Не более 5МВ"
 }

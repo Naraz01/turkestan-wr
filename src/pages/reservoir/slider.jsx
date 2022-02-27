@@ -31,24 +31,28 @@ export const Slider = ({photos, video, isCard}) => {
         setCurrnet(0)
     }, [id])
     React.useEffect(() => {
-        console.log(video)
         let zh = []
         let zhModal = []
         if (photos) {
             photos.forEach((item) => {
-                const filterPhotos = `https://dev14.panama.kz/${item.url}`;
+                const filterPhotos = `https://dev14.panama.kz${item.url}`;
                 zh.push(filterPhotos);
                 zhModal.push(filterPhotos)
             })
         }
+
         video.forEach((str) => {
-            let start = str.indexOf('=');
-            let end = str.indexOf('&');
-            if (str.length) {
-                let filterVideo = `https://i3.ytimg.com/vi/${str.slice(start + 1, (end === -1 ? str.length : end))}/maxresdefault.jpg`;
-                zh.push(filterVideo);
-              //  setImgModal(str.slice(start + 1, end))
-                zhModal.push(str.slice(start + 1, end))
+            if (str) {
+                let start = str.indexOf('=');
+                let end = str.indexOf('&');
+                console.log(end)
+                console.log(str.length + 1)
+                if (str.length) {
+                    let filterVideo = `https://i3.ytimg.com/vi/${str.slice(start + 1, (end === -1 ? str.length: end))}/maxresdefault.jpg`;
+                    zh.push(filterVideo);
+                    setImgModal(str.slice(start + 1, (end === -1 ? str.length: end)))
+                    zhModal.push(str.slice(start + 1, (end === -1 ? str.length: end)))
+                }
             }
         });
         setImg(zh);
@@ -98,15 +102,14 @@ export const Slider = ({photos, video, isCard}) => {
     }
 
     return (
-        <div className='slider'>
-            <div className='slider-item' onClick={openModal}>
+        <div className = 'slider'>
+            <div className = 'slider-item' onClick = {openModal}>
                 <img src={img[current]} className="slider-item__img" alt='' />
-
                 {
                     !isImg && 
                     <div className="slider-play">
                         <PlayCircleIcon style={{fontSize: '80px', color: '#FFFFFF'}} />
-                    </div>
+                    </div> 
                 }
             </div>
             <Modal
@@ -130,7 +133,7 @@ export const Slider = ({photos, video, isCard}) => {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen>
-                    </iframe>                  
+                    </iframe>            
                 }
                 <button className="modal-slider__prev" onClick = {onPrevModal} disabled = {modalCurrent === 0}>
                     <ArrowBackIosNewIcon style = {{fontSize: '50px', color: '#22577E'}} />

@@ -95,8 +95,9 @@
     "awaitingFunding": "Қаржыландыруды күтуде",
     "planningStage": "Жоспарлау кезеңінде",
     "preservation": "Cақталу",
-    "photography5": "Суреттер (мак. 5)",
+    "photography5": "Суреттер",
     "objectEditing": "Объектіні өңдеу",
     "editUser": "Пайдаланушыны өңдеу",
-    "savedSuccessfully": "Cәтті сақталды"
+    "savedSuccessfully": "Cәтті сақталды",
+    "noMore5MB": "5МБ артық емес"
 }

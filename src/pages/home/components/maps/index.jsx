@@ -1,7 +1,6 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { polyline } from "leaflet"
-import { useSelector } from "react-redux";
 import { divIcon } from 'leaflet';
 import { Card } from "../../../../components/card";
 import { MenuApi } from "../../../../services/api/menuApi";
@@ -45,7 +44,7 @@ export const Maps = ({onFullScreen, isFullScreen}) => {
                 color: anime.color,
                 pulseColor: anime.pulseColor, 
                 weight: 2, 
-                dashArray: [4, 10], 
+                dashArray: [5, 12], 
                 reverse: true,
                 delay: 1000
             })
@@ -108,7 +107,6 @@ export const Maps = ({onFullScreen, isFullScreen}) => {
             setReservoirs(newReservoirs)
             setLoading(true)
         } catch (error) {
-            console.log(error)
             setLoading(false)
         }
     }
@@ -117,24 +115,31 @@ export const Maps = ({onFullScreen, isFullScreen}) => {
 
     let [id, setId] = React.useState(42)
     const onCardVisibel = (local) => {
-        setIsCardOpen(!isCardOpen)
+        setIsCardOpen(true)
         setId(local.id)
-        if (isCardOpen !== false) {
-            mapRef.current.setView([42.97045762155687,68.94681841702852], 9);
-        } else {
-            mapRef.current.setView([local.location.lat, local.location.lng], 12);
-        }
+            mapRef.current.setView([local.location.lat, local.location.lng], 11);
+        
     };
     React.useEffect(() => {
         getData()
         setLoading(false)
     }, [general])
+    
     let mybounds = (
         [
             [41.51686545959234,64.83128339062499],
             [44.75806942902366,74.2081144453125]
         ]
     )
+    const OnCardVisibelClose = () => {
+        useMapEvents({
+          click: (e) => {
+            setIsCardOpen(false)
+            mapRef.current.setView([42.97045762155687,68.94681841702852], 9);
+          },
+        })
+        return null
+    }
     if (!loading) {
         return (
             <Loading />
@@ -232,13 +237,18 @@ export const Maps = ({onFullScreen, isFullScreen}) => {
 
                 <PolylineAll />
                 <PolygonAll />
+                <OnCardVisibelClose />
+
             </MapContainer>
             {
                 isCardOpen
                     &&
                 <Card
                     id = {id}
-                    visibel = {onCardVisibel}
+                    visibel = {() => {
+                        setIsCardOpen(!isCardOpen)
+                        mapRef.current.setView([42.97045762155687,68.94681841702852], 9);
+                    }}
                 />
             }
             <div className="maps-downloand">

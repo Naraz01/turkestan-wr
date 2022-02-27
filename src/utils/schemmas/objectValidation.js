@@ -6,21 +6,46 @@ export const objectValidation = yup.object().shape({
     video3: yup.string().nullable().notRequired(),
     video4: yup.string().nullable().notRequired(),
     video5: yup.string().nullable().notRequired(),
-    name_ru: 
-        yup.string()
-        .required('Поле обязательно для заполнения'),
-    name_kk: 
-        yup.string()
-        .required('Поле обязательно для заполнения'),
-    name_en: 
-        yup.string()
-        .required('Поле обязательно для заполнения'),
-    type:
-        yup.string()
-        .nullable(true)
-        .required('Поле обязательно для заполнения'),
-    status:
-        yup.string()
-        .nullable(true)
-        .required('Поле обязательно для заполнения'),
+    name_ru: yup.string().required('Поле обязательно для заполнения'),
+    name_kk: yup.string().required('Поле обязательно для заполнения'),
+    name_en: yup.string().required('Поле обязательно для заполнения'),
+    type: yup.string().nullable(true).default(null).required('Поле обязательно для заполнения'),
+    status: yup.string().nullable(true).default(null).required('Поле обязательно для заполнения'),
+    goal_ru: yup.string().nullable().notRequired().default(null),
+    goal_kk: yup.string().nullable().notRequired().default(null),
+    goal_en: yup.string().nullable().notRequired().default(null),
+    expectation_ru: yup.string().nullable().notRequired().default(null),
+    expectation_kk: yup.string().nullable().notRequired().default(null),
+    expectation_en: yup.string().nullable().notRequired().default(null),
+    water_presence_ru: yup.string().nullable().notRequired().default(null),
+    water_presence_kk: yup.string().nullable().notRequired().default(null),
+    water_presence_en: yup.string().nullable().notRequired().default(null),
+    water_spring_ru: yup.string().nullable().notRequired().default(null),
+    water_spring_kk: yup.string().nullable().notRequired().default(null),
+    water_spring_en: yup.string().nullable().notRequired().default(null),
+    water_disposal_ru: yup.string().nullable().notRequired().default(null),
+    water_disposal_kk: yup.string().nullable().notRequired().default(null),
+    water_disposal_en: yup.string().nullable().notRequired().default(null),
+    work_type_ru: yup.string().nullable().notRequired().default(null),
+    work_type_kk: yup.string().nullable().notRequired().default(null),
+    work_type_en: yup.string().nullable().notRequired().default(null),
+    technical_solution_ru: yup.string().nullable().notRequired().default(null),
+    technical_solution_kk: yup.string().nullable().notRequired().default(null),
+    technical_solution_en: yup.string().nullable().notRequired().default(null),
+    description_ru: yup.string().nullable().notRequired().default(null),
+    description_kk: yup.string().nullable().notRequired().default(null),
+    description_en: yup.string().nullable().notRequired().default(null),
+    responsible_person_ru: yup.string().nullable().notRequired().default(null),
+    responsible_person_kk: yup.string().nullable().notRequired().default(null),
+    responsible_person_en: yup.string().nullable().notRequired().default(null),
+    total_funding: yup.string().nullable().notRequired().default(null), 
+    planner_ru: yup.string().nullable().notRequired().default(null),
+    planner_kk: yup.string().nullable().notRequired().default(null),
+    planner_en: yup.string().nullable().notRequired().default(null),
+    developer_ru: yup.string().nullable().notRequired().default(null),
+    developer_kk: yup.string().nullable().notRequired().default(null),
+    developer_en: yup.string().nullable().notRequired().default(null),
+    volume: yup.string().nullable().notRequired().default(null),
+    length: yup.string().nullable().notRequired().default(null),
 })
+                

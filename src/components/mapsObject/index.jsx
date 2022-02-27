@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { polyline } from "leaflet"
 import { divIcon } from 'leaflet';
@@ -10,8 +9,8 @@ import { PolylineAll } from '../../pages/home/components/maps/polylineAll'
 import { PolygonAll } from '../../pages/home/components/maps/polygonAll'
 import { markerIconPurple } from '../../pages/home/components/maps/markerIcon'
 
-export const MapsObject = ({location}) => { 
-    const [location1, setLocation1] = React.useState([])
+export const MapsObject = ({locationMap, setLocationMaps}) => { 
+    const [location, setLocation] = React.useState([])
     const mapRef = React.useRef(null)
     
     let mybounds = (
@@ -21,9 +20,9 @@ export const MapsObject = ({location}) => {
     )
     
     React.useEffect(() => {
-        setLocation1([location])
-    }, [location])
-    
+        setLocation(locationMap)
+    }, [locationMap])
+
     function addAnimations(){
         const map  = mapRef.current;
         animation.forEach((anime) => {
@@ -40,49 +39,51 @@ export const MapsObject = ({location}) => {
         })
     }
 
-    function MyLocation() {
+    const MyLocation = () => {
         useMapEvents({
           click: (e) => {
-            setLocation1([e.latlng])
+            setLocation([e.latlng])
+            setLocationMaps([e.latlng])
           },
         })
         return null
     }
 
     return (
-                                <MapContainer
-                                    whenCreated = {(mapInstance)=> { mapRef.current = mapInstance; addAnimations() }}
-                                    center = {[43.04781870279426,68.967758]}
-                                    zoom = {9}
-                                    scrollWheelZoom = {false}
-                                    maxBounds = {mybounds}
-                                    zoomControl = {false}
-                                    doubleClickZoom = {false}
-                                    attributionControl = {false}
-                                >
-                                    <TileLayer url={'https://api.maptiler.com/tiles/satellite-v2/{z}/{x}/{y}.jpg?key=RJz2g9YsjbZqCKNLt7oN'} attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'} />
-                                        {names.map((name, i) => {
-                                            return (<Marker
-                                                key={i}
-                                                position={name.position}
-                                                icon ={divIcon({html: name.html,
-                                                className:name.className})}>
-                                            </Marker>)
-                                            }
-                                        )}
+        <MapContainer
+            whenCreated = {(mapInstance)=> { mapRef.current = mapInstance; addAnimations() }}
+            center = {[43.04781870279426,68.967758]}
+            zoom = {9}
+            scrollWheelZoom = {false}
+            maxBounds = {mybounds}
+            zoomControl = {false}
+            doubleClickZoom = {false}
+            attributionControl = {false}
+        >
+            <TileLayer url={'https://api.maptiler.com/tiles/satellite-v2/{z}/{x}/{y}.jpg?key=RJz2g9YsjbZqCKNLt7oN'} attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'} />
+                {names.map((name, i) => {
+                    return (<Marker
+                        key={i}
+                        position={name.position}
+                        icon ={divIcon({html: name.html,
+                        className:name.className})}>
+                    </Marker>)
+                }
+            )}
                                           
-                                        <MyLocation />
-                                        {
-                                            location1.map((item, i) => {
-                                                return (<Marker
-                                                    key = {i}
-                                                    position = {[item.lat, item.lng]}
-                                                    icon = {markerIconPurple}
-                                                />)       
-                                            })
-                                        }
-                                        <PolylineAll />
-                                        <PolygonAll />
-                                </MapContainer>                                  
+            <MyLocation />
+            
+            {
+                location && location.map((item, i) => {
+                    return (<Marker
+                    key = {i}
+                    position = {[item.lat, item.lng]}
+                    icon = {markerIconPurple}
+                    />)                     
+                })
+            }
+            <PolylineAll />
+            <PolygonAll />
+        </MapContainer>                                  
     )
 };

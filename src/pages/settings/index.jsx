@@ -5,17 +5,19 @@ import { Helmet } from "react-helmet";
 import { Footer } from "../../components/footer";
 import { Back } from "../../components/back"
 import { useSelector } from "react-redux";
-import {UsersApi} from '../../services/api/usersApi';
+import { UsersApi } from '../../services/api/usersApi';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SettingsValidation } from '../../utils/schemmas/settingsValidation';
 import { PasswordValidation } from '../../utils/schemmas/passwordValidation';
 import { Cancel } from '../../components/cancel/index'
-import {Saved} from '../../components/saved'
+import { Saved } from '../../components/saved'
+import { Loading } from '../../components/loading/indexx'
 
 export const Settings = () => {
     const {t} = useTranslation()
     const [loading, setLoading] = React.useState(false)
+    const [dataLoading, setDataLoading] = React.useState(true)
     const [isPasswordChange, setIsPasswordChange] = React.useState(false)
     const [isSaved, setIsSaved] = React.useState(false)
     const userUpdateForm = useForm({
@@ -45,15 +47,19 @@ export const Settings = () => {
 
     const getUser = async () => {
         try {
+            setDataLoading(true)
             const obj = await UsersApi.fetchFindOne(user && user.id);
             userUpdateForm.setValue( "name", obj.content.name );
             userUpdateForm.setValue( "email", obj.content.email );
+            setDataLoading(false)
         } catch(error) {
             console.log('fetchFindOne', error)
+            setDataLoading(true)
         }
     }
-    
-    getUser()
+    React.useEffect(() => {
+        getUser()
+    }, [])
 
     const dataUpdate = async (data) => {
         setLoading(true)
@@ -79,6 +85,15 @@ export const Settings = () => {
         }
     }
 
+    if (dataLoading) {
+        return (
+            <div className='reservoir'>
+                <div className='container'>
+                    <Loading />
+                </div>
+            </div>
+        )
+    }
 
     return (
         <>

@@ -95,8 +95,9 @@
     "awaitingFunding": "Awaiting funding",
     "planningStage": "In planning stage",
     "preservation": "Conservation",
-    "photography5": "Photos (max 5)",
+    "photography5": "Photos",
     "objectEditing": "object editing",
     "editUser": "Edit user",
-    "savedSuccessfully": "Saved successfully"
+    "savedSuccessfully": "Saved successfully",
+    "noMore5MB": "No more than 5MB"
 }

@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(FetchGeneral())
-  }, [i18next.language]);
+  }, []);
 
   const {isAuth} = useSelector((state) => {
     return {

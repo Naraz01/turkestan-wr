@@ -17,17 +17,32 @@ export const Reservoir = () => {
     const [data, setData] = React.useState();
     const {t} = useTranslation()
     const {id} = useParams()
-
+    console.log(data)
+    const getData = async () => {
+        try {
+            const obj = await GeneralApi.fetchFindOne(id);
+            setData(obj.content)
+            console.log(obj.content)
+        } catch(error) {
+            console.log('fetchFindOne', error)
+        }
+    }
+    React.useEffect(() => {
+        getData()
+    }, [id, i18next.language])
+    /*
     React.useEffect(() => {
         (async () => {
             try {
                 const obj = await GeneralApi.fetchFindOne(id);
                 setData(obj.content)
+                console.log(obj.content)
             } catch(error) {
                 console.log('fetchFindOne', error)
             }
         })()
     }, [id, i18next.language])
+    */
     if (!data) {
         return (
             <div className='reservoir'>
@@ -45,24 +60,24 @@ export const Reservoir = () => {
                 {data.name}
             </title>
         </Helmet>
-        <div className='reservoir'>
-            <div className='container'>
-                <Breadcrumbs title={data.name} id={data.id} />
-                <Type text={data.type.name}/>
-                <Title title={data.name} />
-                <div className={'slider-reservoir'}>
-                    <Slider photos={data.photos} video={data.video}/>
+        <div className = 'reservoir'>
+            <div className = 'container'>
+                <Breadcrumbs title = {data.name} id = {data.id} />
+                <Type text = {data.type.name}/>
+                <Title title = {data.name} />
+                <div className = {'slider-reservoir'}>
+                    <Slider photos = {data.photos} video = {data.video}/>
                 </div>
-                <div className="reservoir-content">
-                    <ReservoirInfo title={t('volume')} text = {data.volume}/>
-                    <ReservoirInfo title={t('objectTask')} text = {data.goal}/>
-                    <ReservoirInfo title={t('expectedResult')} text = {data.expectation}/>
-                    <ReservoirInfo title={t('presenceWaterObject')} text = {data.water_presence}/>
-                    <ReservoirInfo title={t('waterSource')} text = {data.water_spring}/>
-                    <ReservoirInfo title={t('drainage')} text = {data.water_disposal}/>
-                    <ReservoirInfo title={t('typeWorkStage')} text = {data.work_type}/>
-                    <ReservoirInfo title={t('technicalSolution')} text = {data.technical_solution}/>
-                    <ReservoirInfo title={t('additionalInformation')} text = {data.description}/>
+                <div className = "reservoir-content">
+                    <ReservoirInfo title = {t('volume')} text = {data.volume}/>
+                    <ReservoirInfo title = {t('objectTask')} text = {data.goal}/>
+                    <ReservoirInfo title = {t('expectedResult')} text = {data.expectation}/>
+                    <ReservoirInfo title = {t('presenceWaterObject')} text = {data.water_presence}/>
+                    <ReservoirInfo title = {t('waterSource')} text = {data.water_spring}/>
+                    <ReservoirInfo title = {t('drainage')} text = {data.water_disposal}/>
+                    <ReservoirInfo title = {t('typeWorkStage')} text = {data.work_type}/>
+                    <ReservoirInfo title = {t('technicalSolution')} text = {data.technical_solution}/>
+                    <ReservoirInfo title = {t('additionalInformation')} text = {data.description}/>
                 </div>
                 <div className = 'reservoir-customer'>
                     <p className = 'reservoir-customer__title'> {t('customer')} </p>

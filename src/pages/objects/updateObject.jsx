@@ -4,45 +4,25 @@ import i18next from 'i18next';
 import { Helmet } from "react-helmet";
 import { Footer } from "../../components/footer";
 import { Back } from '../../components/back'
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import { polyline } from "leaflet"
-import { divIcon } from 'leaflet';
-import { antPath } from "leaflet-ant-path";
-import { animation } from '../home/components/maps/animation'
-import { names } from '../home/components/maps/names'
-import { PolylineAll } from '../home/components/maps/polylineAll'
-import { PolygonAll } from '../home/components/maps/polygonAll'
 import { ObjectsApi } from '../../services/api/objectsApi'
-import { markerIconPurple } from '../home/components/maps/markerIcon'
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { objectValidation } from '../../utils/schemmas/objectValidation';
-import CloseIcon from '@mui/icons-material/Close';
 import { EditorText } from '../../components/editorText/';
 import {Cancel} from '../../components/cancel/index';
 import {BlogDraft} from './blogDraft';
 import {Loading} from '../../components/loading/indexx';
 import { Saved } from "../../components/saved";
+import {MapsObject} from "../../components/mapsObject";
+import {ImageAdd} from './imageAdd'
+import {ImageBlog} from './imageBlog'
 
 export const UpdateObject = () => {
     const {t} = useTranslation()
     const {id} = useParams()
 
-    const createObjectForm = useForm({
-        defaultValues: {
-            name_ru: "",
-            name_kk: "",
-            name_en: "",
-            type: null,
-            status: null,
-            video1: "",
-            video2: "",
-            video3: "",
-            video4: "",
-            video5: "",
-
-        },
+    const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm({
         mode: 'onSubmit',
         resolver: yupResolver(objectValidation)
     })
@@ -50,128 +30,20 @@ export const UpdateObject = () => {
     const [data, setData] = React.useState();
     const [selectType, setSelectType] = React.useState('null');
     const onSelectType = (value) => {
-        console.log(value.target.value)
+        console.log(value)
         setSelectType(value.target.value)
     }
     const [isSaved, setIsSaved] = React.useState(false)
     const [isMagistral, setIsMagistral] = React.useState(false)
     const [volume, setVolume] = React.useState('')
-    const [length, setLength] = React.useState("")
     const [loading, setLoading] = React.useState(false)
+
     const [location, setLocation] = React.useState([])
+    const setLocationMaps = (dataLocation) => {
+        setLocation(dataLocation)
+    }
+
     const [img, setImg] = React.useState([]);
-
-    const [objectTaskRu, setObjectTaskRu] = React.useState(null)
-    const [objectTaskKz, setObjectTaskKz] = React.useState(null)
-    const [objectTaskEn, setObjectTaskEn] = React.useState(null)
-    const changeObjectTaskRu = (text) => {
-        setObjectTaskRu(text)
-    }
-    const changeObjectTaskKz = (text) => {
-        setObjectTaskKz(text)
-    }
-    const changeObjectTaskEn = (text) => {
-        setObjectTaskEn(text)
-    }
-
-    const [expectedResultRu, setExpectedResultRu] = React.useState(null)
-    const [expectedResultKz, setExpectedResultKz] = React.useState(null)
-    const [expectedResultEn, setExpectedResultEn] = React.useState(null)
-
-    const changeExpectedResultRu = (text) => {
-        setExpectedResultRu(text)
-    }
-    const changeExpectedResultKz = (text) => {
-        setExpectedResultKz(text)
-    }
-    const changeExpectedResultEn = (text) => {
-        setExpectedResultEn(text)
-    }
-
-    const [waterSourceRu, setWaterSourceRu] = React.useState(null)
-    const [waterSourceKz, setWaterSourceKz] = React.useState(null)
-    const [waterSourceEn, setWaterSourceEn] = React.useState(null)
-    const changeWaterSourceRu = (text) => {
-        setWaterSourceRu(text)
-    }
-    const changeWaterSourceKz = (text) => {
-        setWaterSourceKz(text)
-    }
-    const changeWaterSourceEn = (text) => {
-        setWaterSourceEn(text)
-    }
-
-    const [waterDisposalRu, setWaterDisposalRu] = React.useState(null)
-    const [waterDisposalKz, setWaterDisposalKz] = React.useState(null)
-    const [waterDisposalEn, setWaterDisposalEn] = React.useState(null)
-    const changeWaterDisposalRU = (text) => {
-        setWaterDisposalRu(text)
-    }
-    const changeWaterDisposalKz = (text) => {
-        setWaterDisposalKz(text)
-    }
-    const changeWaterDisposalEn = (text) => {
-        setWaterDisposalEn(text)
-    }
-
-    const [technicalSolutionRu, setTechnicalSolutionRu] = React.useState(null)
-    const [technicalSolutionKz, setTechnicalSolutionKz] = React.useState(null)
-    const [technicalSolutionEn, setTechnicalSolutionEn] = React.useState(null)
-    const changeTechnicalSolutionRu = (text) => {
-        setTechnicalSolutionRu(text)
-    }
-    const changeTechnicalSolutionKz = (text) => {
-        setTechnicalSolutionKz(text)
-    }
-    const changeTechnicalSolutionEn = (text) => {
-        setTechnicalSolutionEn(text)
-    }
-
-    
-    const [responsiblePersonRu, setResponsiblePersonRu] = React.useState(null)
-    const [responsiblePersonKz, setResponsiblePersonKz] = React.useState(null)
-    const [responsiblePersonEn, setResponsiblePersonEn] = React.useState(null)
-    const changeResponsiblePersonRu = (text) => {   
-        setResponsiblePersonRu(text)
-    }
-    const changeResponsiblePersonKz = (text) => {
-        setResponsiblePersonKz(text)
-    }
-    const changeResponsiblePersonEn = (text) => {
-        setResponsiblePersonEn(text)
-    }
-
-    const [amountFunding, setAmountFunding] = React.useState("")
-    const changeAmountFunding = (text) => {
-        setAmountFunding(text)
-    }
-
-    const [designerRu, setDesignerRu] = React.useState(null)
-    const [designerKz, setDesignerKz] = React.useState(null)
-    const [designerEn, setDesignerEn] = React.useState(null)
-    const changeDesignerRu = (text) => {   
-        setDesignerRu(text)
-    }
-    const changeDesignerKz = (text) => {
-        setDesignerKz(text)
-    }
-    const changeDesignerEn = (text) => {
-        setDesignerEn(text)
-    }
-    const mapRef = React.useRef(null)
-    
-    const [builderRu, setBuilderRu] = React.useState(null)
-    const [builderKz, setBuilderKz] = React.useState(null)
-    const [builderEn, setBuilderEn] = React.useState(null)
-    const changeBuilderRu = (text) => {   
-        setBuilderRu(text)
-    }
-    const changeBuilderKz = (text) => {
-        setBuilderKz(text)
-    }
-    const changeBuilderEn = (text) => {
-        setBuilderEn(text)
-    }
 
     const [draftProjectRu, setDraftProjectRu] = React.useState(null);
     const [draftProjectKz, setDraftProjectKz] = React.useState(null);
@@ -186,86 +58,12 @@ export const UpdateObject = () => {
         setDraftProjectEn(text)
     }
 
-    let mybounds = (
-        [
-            [43.04781870279426, 68.967758]
-        ]
-    )
-    
-    function addAnimations(){
-        const map  = mapRef.current;
-        animation.forEach((anime) => {
-            const antPolyline = antPath(anime.positions, { 
-                use: polyline, 
-                color: anime.color,
-                pulseColor: anime.pulseColor, 
-                weight: 2, 
-                dashArray: [4, 10], 
-                reverse: true,
-                delay: 1000
-            })
-            antPolyline.addTo(map)
-        })
-    }
-
-    function MyLocation() {
-        useMapEvents({
-          click: (e) => {
-            setLocation([e.latlng])
-          },
-        })
-        return null
-    }
-
     const getData = async () => {
         try {
             const obj = await ObjectsApi.fetchFindOne(id);
             setData(obj.content)
-            let list = obj.content
-            createObjectForm.setValue( "name_ru", list.name_ru );
-            createObjectForm.setValue( "name_kk", list.name_kk );
-            createObjectForm.setValue( "name_en", list.name_en );
-            setLocation([list.location])
-            createObjectForm.setValue( "type", list.type.id );
-            setSelectType(list.type.id.toString())
-            createObjectForm.setValue( "status", list.status.id );
-            setIsMagistral(list.isMagistral)
-            setLength(list.length)
-            setVolume(list.volume)
-            setImg(list.photos)
-            createObjectForm.setValue( "video1", list.video[0] );
-            createObjectForm.setValue( "video2", list.video[1] );
-            createObjectForm.setValue( "video3", list.video[2] );
-            createObjectForm.setValue( "video4", list.video[3] );
-            createObjectForm.setValue( "video5", list.video[4] );
-            setObjectTaskRu(list.goal_ru)
-            setObjectTaskKz(list.goal_kk)
-            setObjectTaskEn(list.goal_kk)
-            setExpectedResultRu(list.expectation_ru)
-            setExpectedResultKz(list.expectation_kk)
-            setExpectedResultEn(list.expectation_en)
-            setWaterSourceRu(list.water_spring_ru)
-            setWaterSourceKz(list.water_spring_kk)
-            setWaterSourceEn(list.water_spring_en)
-            setWaterDisposalRu(list.water_disposal_ru)
-            setWaterDisposalKz(list.water_disposal_kk)
-            setWaterDisposalEn(list.water_disposal_en)
-            setTechnicalSolutionRu(list.technical_solution_ru)
-            setTechnicalSolutionKz(list.technical_solution_kk)
-            setTechnicalSolutionEn(list.technical_solution_en)
-            setResponsiblePersonRu(list.responsible_person_ru)
-            setResponsiblePersonKz(list.responsible_person_kk)
-            setResponsiblePersonEn(list.responsible_person_en)
-            setDesignerRu(list.planner_ru)
-            setDesignerKz(list.planner_kk)
-            setDesignerEn(list.planner_en)
-            setAmountFunding(list.total_funding)
-            setBuilderRu(list.developer_ru)
-            setBuilderKz(list.developer_kk)
-            setBuilderEn(list.developer_en)
-            setDraftProjectRu(list.project_draft_ru)
-            setDraftProjectKz(list.project_draft_kk)
-            setDraftProjectEn(list.project_draft_en)
+            setLocation([obj.content.location])
+            setImg(obj.content.photos)
         } catch(error) {
             console.log('fetchFindOne', error)
         }
@@ -275,91 +73,26 @@ export const UpdateObject = () => {
     }, [id])
     
 
+    const getImg = (photo) => {
+        setImg(photo)
+    }
 
-    const sendFile = async (e) => {
-        try {
-            let lists = e.target.files;
-            const data = new FormData();
-            let newImg = []
-            for (let i = 0; i < lists.length; i++) {
-                data.append('file', lists[i])
-                let obj = await ObjectsApi.uploadImage(data)
-                const createImg = {
-                    url: obj.content.value,
-                    type: lists[i].type,
-                    name: lists[i].name,
-                }
-                newImg.push(createImg)
-            }
-            setImg([...img, ...newImg])
-            console.log(img)
-        } catch(error) {
-            console.log('sendFile', error)
-        }
-    }
-    const deleteImg = (item) => {
-        let newImg = img.filter((photo) => {
-            return photo !== item;
-        })
-        setImg(newImg)
-    }
     React.useEffect(() => {
         document.addEventListener('touchstart', {passive: true});
     },[])
     const updateObject = async (list) => {
         try {
             setLoading(true)
-            let object = {
-                type: list.type,
-                status: list.status,
-                volume: volume,
-                length: length,
-                location: location[0],
-                isMagistral: isMagistral,
-                name_ru: list.name_ru,
-                name_kk: list.name_kk,
-                name_en: list.name_en,
-                goal_ru: objectTaskRu,
-                goal_kk: objectTaskKz,
-                goal_en: objectTaskEn,
-                expectation_ru: expectedResultRu,
-                expectation_kk: expectedResultKz,
-                expectation_en: expectedResultEn,
-                water_presence_ru: "ru",
-                water_presence_kk: "kk",
-                water_presence_en: "en",
-                water_spring_ru: waterSourceRu,
-                water_spring_kk: waterSourceKz,
-                water_spring_en: waterSourceEn,
-                water_disposal_ru: waterDisposalRu,
-                water_disposal_kk: waterDisposalKz,
-                water_disposal_en: waterDisposalEn,
-                work_type_ru: null,
-                work_type_kk: null,
-                work_type_en: null,
-                technical_solution_ru: technicalSolutionRu,
-                technical_solution_kk: technicalSolutionKz,
-                technical_solution_en: technicalSolutionEn,
-                description_ru: "Описание",
-                description_kk: null,
-                description_en: null,
-                responsible_person_ru: responsiblePersonRu,
-                responsible_person_kk: responsiblePersonKz,
-                responsible_person_en: responsiblePersonEn,
-                total_funding: amountFunding,
-                planner_ru: designerRu,
-                planner_kk: designerKz,
-                planner_en: designerEn,
-                developer_ru: builderRu,
-                developer_kk: builderKz,
-                developer_en: builderEn,
-                project_draft_ru: draftProjectRu,
-                project_draft_kk: draftProjectKz,
-                project_draft_en: draftProjectEn,
-                photos: img,
-                video: createObjectForm.getValues('video1') || createObjectForm.getValues('video2') || createObjectForm.getValues('video3') || createObjectForm.getValues('video4') || createObjectForm.getValues('video5') ? [list.video1, list.video2, list.video3, list.video4, list.video5] : null
-            }
-            await ObjectsApi.updateObject(id, object)
+            const video = [getValues('video1'), getValues('video2'), getValues('video3'), getValues('video4'), getValues('video5')]
+            const newData = JSON.parse(JSON.stringify(list))
+            newData.video = video;
+            newData.photos = img ? img : null;
+            newData.location = { lat:location[0].lat, lng:location[0].lng }
+            newData.project_draft_ru = draftProjectRu
+            newData.project_draft_kk = draftProjectKz
+            newData.project_draft_en = draftProjectEn
+            newData.isMagistral = isMagistral
+            await ObjectsApi.updateObject(id, newData)
             setIsSaved(true)
             setLoading(false)
         } catch(error) {
@@ -396,7 +129,7 @@ export const UpdateObject = () => {
                     </div>
                     
                 <div className = "objectCreate-data">
-                    <form onSubmit = {createObjectForm.handleSubmit(updateObject)}>
+                    <form onSubmit = {handleSubmit(updateObject)}>
                     {
                         loading ?
                         <Loading/>
@@ -404,30 +137,33 @@ export const UpdateObject = () => {
                         <>
                         <div className = "objectCreate-item">
                             <p className = "objectCreate-item__title"> {t('nameInRu')} *</p>
-                            <input 
+                            <input
+                                defaultValue = {data.name_ru}
                                 name = "name_ru" 
-                                className = {createObjectForm.formState.errors.name_ru ? 'forms-input forms-input__error' : "forms-input"}
-                                {...createObjectForm.register('name_ru')}
+                                className = {errors.name_ru ? 'forms-input forms-input__error' : "forms-input"}
+                                {...register('name_ru')}
                             />
-                            <p> {createObjectForm.formState.errors.name_ru?.message} </p>
+                            <p> {errors.name_ru?.message} </p>
                         </div>
                         <div className = "objectCreate-item">
                             <p className = "objectCreate-item__title"> {t('nameInKz')} *</p>
                             <input 
+                                defaultValue = {data.name_kk}
                                 name = "name_kk" 
-                                className = {createObjectForm.formState.errors.name_kk ? 'forms-input forms-input__error' : "forms-input"}
-                                {...createObjectForm.register('name_kk')}
+                                className = {errors.name_kk ? 'forms-input forms-input__error' : "forms-input"}
+                                {...register('name_kk')}
                             />
-                            <p> {createObjectForm.formState.errors.name_kk?.message} </p>
+                            <p> {errors.name_kk?.message} </p>
                         </div>
                         <div className = "objectCreate-item">
                             <p className = "objectCreate-item__title"> {t('nameInEn')} *</p>
                             <input 
-                                name = "name_en" 
-                                className = {createObjectForm.formState.errors.name_en ? 'forms-input forms-input__error' : "forms-input"}
-                                {...createObjectForm.register('name_en')}
+                                name = "name_en"
+                                defaultValue = {data.name_en}
+                                className = {errors.name_en ? 'forms-input forms-input__error' : "forms-input"}
+                                {...register('name_en')}
                             />
-                            <p> {createObjectForm.formState.errors.name_en?.message} </p>
+                            <p> {errors.name_en?.message} </p>
                         </div>
                         <div className = "objectCreate-lists">
                             <div className="objectCreate-list">
@@ -435,7 +171,7 @@ export const UpdateObject = () => {
                                 <select 
                                     name = "type"
                                     className = "objectCreate-list__select"
-                                    {...createObjectForm.register('type')}
+                                    {...register('type')}
                                     onChange = {onSelectType}
                                     value = {selectType}
                                 >
@@ -445,14 +181,14 @@ export const UpdateObject = () => {
                                     <option value = '3'> {t('citySystem')} </option>
                                     <option value = '4'> {t('conservationFacilities')} </option>
                                 </select>
-                                <p> {createObjectForm.formState.errors.type?.message} </p>
+                                <p> {errors.type?.message} </p>
                             </div>
                             <div className="objectCreate-list">
                                 <p className = "objectCreate-item__title"> {t('objectStatus')} *</p>
                                 <select 
                                     name = "status"
                                     className="objectCreate-list__select"
-                                    {...createObjectForm.register('status')}
+                                    {...register('status')}
                                     value = {selectType}
                                 >
                                     <option disabled value = '0' className="option-delete"> </option>
@@ -461,7 +197,7 @@ export const UpdateObject = () => {
                                     <option value = '3'> {t('underConstruction')} </option>
                                     <option value = '4'> {t('finished')} </option>
                                 </select>
-                                <p> {createObjectForm.formState.errors.status?.message} </p>
+                                <p> {errors.status?.message} </p>
                             </div>
                         </div>
                         {
@@ -480,50 +216,17 @@ export const UpdateObject = () => {
                         <div className = "objectCreate-item">
                             <p className = "objectCreate-item__title"> {t('location')} *</p>
                             <div className="objectCreate-maps">
-                                <MapContainer
-                                    whenCreated = {(mapInstance)=> { mapRef.current = mapInstance; addAnimations() }}
-                                    center = {[43.04781870279426,68.967758]}
-                                    zoom = {9}
-                                    scrollWheelZoom = {false}
-                                    maxBounds = {mybounds}
-                                    zoomControl = {false}
-                                    doubleClickZoom = {false}
-                                    attributionControl = {false}
-                                >
-                                    <TileLayer url={'https://api.maptiler.com/tiles/satellite-v2/{z}/{x}/{y}.jpg?key=RJz2g9YsjbZqCKNLt7oN'} attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'} />
-                                        {names.map((name, i) => {
-                                            return (<Marker
-                                                key={i}
-                                                position={name.position}
-                                                icon ={divIcon({html: name.html,
-                                                className:name.className})}>
-                                            </Marker>)
-                                            }
-                                        )}
-                                          
-                                        <MyLocation />
-                                        {
-                                            location.map((item, i) => {
-                                                return (<Marker
-                                                    key = {i}
-                                                    position = {[item.lat, item.lng]}
-                                                    icon = {markerIconPurple}
-                                                />)       
-                                            })
-                                        }
-                                        <PolylineAll />
-                                        <PolygonAll />
-                                </MapContainer>                              
+                                <MapsObject setLocationMaps = {setLocationMaps} locationMap = {location && location} />                                  
                             </div>
                             {
                                 (selectType === 'null' || selectType === '1' || selectType === '4') &&
                                 <div className = "objectCreate-item">
                                     <p className = "objectCreate-item__title"> {t('volumeObject')}</p>
                                     <input 
-                                        type = "text"
-                                        value = {volume} 
-                                        onChange = {(e) => setVolume(e.target.value)}
-                                        className = {'forms-input'}
+                                        name = "volume"
+                                        defaultValue = {data.volume}
+                                        className = {errors.volume ? 'forms-input forms-input__error' : "forms-input"}
+                                        {...register('volume')}
                                     />
                                 </div>
                             }
@@ -542,124 +245,80 @@ export const UpdateObject = () => {
                                     <div className = "objectCreate-item">
                                         <p className = "objectCreate-item__title"> {t('length')}</p>
                                         <input 
-                                            type = "text"
-                                            value = {length} 
-                                            onChange = {(e) => setLength(e.target.value)}
-                                            className = {'forms-input'}
+                                            name = "length"
+                                            defaultValue = {data.length}
+                                            className = {errors.length ? 'forms-input forms-input__error' : "forms-input"}
+                                            {...register('length')}
                                         />
                                     </div>
                                 </>
                             }
                             <div className="objectCreate-item">
                                 <p className = "objectCreate-item__title"> {t('photography5')} </p>
-                                    <div>
-                                        <input 
-                                            type = "file"
-                                            className = "forms-input__file"
-                                            accept = ".jpg, .jpeg, .png"
-                                            name = "fileUpload[]"
-                                            multiple
-                                            onChange={(e) => sendFile(e)}
-                                        />
-                                    </div>
+                                    <ImageAdd getImg = {getImg} img = {img} />
                                 </div>
                             </div>
                             <div className = 'objectCreate-item'>
-                                {
-                                    img && img.map((item, i) => {
-                                        return (
-                                            <div className = 'objectCreate-item__images' key = {i}>
-                                                <div className = "objectCreate-item__block">
-                                                    <div className = 'objectCreate-item__image'>
-                                                        <img src = {`https://dev14.panama.kz/${item.url}`} alt = "#"/>
-                                                    </div>
-                                                    <p className = "objectCreate-item__p">{item.name}</p>
-                                                </div>
-                                                <div className = 'objectCreate-item__image-delete' onClick = {() => deleteImg(item)}>
-                                                    <CloseIcon style = {{fontSize: '14px', color: '#22577E'}} />
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                <ImageBlog getImg = {getImg} img = {img} />
                             </div>
                             <div className = "objectCreate-lists objectCreate-lists__you">
                                 <p className = "objectCreate-item__title"> {t('youTubeLink')} </p>
                                 <p></p>
-                                <input 
-                                    name = "video1" 
-                                    {...createObjectForm.register('video1')}
-                                    className = {'forms-input'}
-                                />
-                                <input 
-                                    name = "video2" 
-                                    {...createObjectForm.register('video2')}
-                                    className = {'forms-input'}
-                                />
-                                <input 
-                                    name = "video3" 
-                                    {...createObjectForm.register('video3')}
-                                    className = {'forms-input'}
-                                />
-                                <input 
-                                    name = "video4" 
-                                    {...createObjectForm.register('video4')}
-                                    className = {'forms-input'}
-                                />
-                                <input
-                                    name = "video5" 
-                                    {...createObjectForm.register('video5')}
-                                    className = {'forms-input'}
-                                />
+                                {}
+                                <input defaultValue = {data.video && data.video[0]} name = "video1" {...register('video1')} className = {'forms-input'} />
+                                <input defaultValue = {data.video && data.video[1]} name = "video2" {...register('video2')} className = {'forms-input'} />
+                                <input defaultValue = {data.video && data.video[2]} name = "video3" {...register('video3')} className = {'forms-input'} />
+                                <input defaultValue = {data.video && data.video[3]} name = "video4" {...register('video4')} className = {'forms-input'} />
+                                <input defaultValue = {data.video && data.video[4]} name = "video5" {...register('video5')} className = {'forms-input'} />
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeObjectTaskRu } text = {objectTaskRu} title = {t('objectTaskRu')}/>
-                                <EditorText changeText = { changeObjectTaskKz } text = {objectTaskKz} title = {t('objectTaskKz')} />
-                                <EditorText changeText = { changeObjectTaskEn } text = {objectTaskEn} title = {t('objectTaskKz')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.goal_ru} register = {register} name = 'goal_ru' title = {t('objectTaskRu')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.goal_kk} register = {register} name = 'goal_kk' title = {t('objectTaskKz')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.goal_en} register = {register} name = 'goal_en' title = {t('objectTaskEn')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeExpectedResultRu } text = {expectedResultRu} title = {t('expectedResultRu')}/>
-                                <EditorText changeText = { changeExpectedResultKz } text = {expectedResultKz} title = {t('expectedResultKz')}/>
-                                <EditorText changeText = { changeExpectedResultEn } text = {expectedResultEn} title = {t('expectedResultEn')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.expectation_ru} register = {register} name = 'expectation_ru' title = {t('expectedResultRu')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.expectation_kk} register = {register} name = 'expectation_kk' title = {t('expectedResultKz')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.expectation_en} register = {register} name = 'expectation_en' title = {t('expectedResultEn')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeWaterSourceRu } text = {waterSourceRu} title = {t('waterSourceRu')}/>
-                                <EditorText changeText = { changeWaterSourceKz } text = {waterSourceKz} title = {t('waterSourceKz')} />
-                                <EditorText changeText = { changeWaterSourceEn } text = {waterSourceEn} title = {t('waterSourceEn')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_spring_ru} register = {register} name = 'water_spring_ru' title = {t('waterSourceRu')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_spring_kk} register = {register} name = 'water_spring_kk' title = {t('waterSourceKz')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_spring_en} register = {register} name = 'water_spring_en' title = {t('waterSourceEn')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeWaterDisposalRU } text = {waterDisposalRu} title = {t('waterDisposalRu')} />
-                                <EditorText changeText = { changeWaterDisposalKz } text = {waterDisposalKz} title = {t('waterDisposalKz')}/>
-                                <EditorText changeText = { changeWaterDisposalEn } text = {waterDisposalEn} title={t('waterDisposalEn')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_disposal_ru} register = {register} name = 'water_disposal_ru' title = {t('waterDisposalRu')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_disposal_kk} register = {register} name = 'water_disposal_kk' title = {t('waterDisposalKz')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_disposal_en} register = {register} name = 'water_disposal_en' title = {t('waterDisposalEn')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeTechnicalSolutionRu } text = {technicalSolutionRu} title = {t('technicalSolutionRu')}/>
-                                <EditorText changeText = { changeTechnicalSolutionKz } text = {technicalSolutionKz} title = {t('technicalSolutionKz')} />
-                                <EditorText changeText = { changeTechnicalSolutionEn } text = {technicalSolutionEn} title = {t('technicalSolutionEn')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.technical_solution_ru} register = {register} name = 'technical_solution_ru' title = {t('technicalSolutionRu')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.technical_solution_kk} register = {register} name = 'technical_solution_kk' title = {t('technicalSolutionKz')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.technical_solution_en} register = {register} name = 'technical_solution_en' title = {t('technicalSolutionEn')} />
                             </div>
                             <p className = "customer-title"> {t('customer')} </p>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeResponsiblePersonRu } text = {responsiblePersonRu} title = {t('responsiblePersonRu')}/>
-                                <EditorText changeText = { changeResponsiblePersonKz } text = {responsiblePersonKz} title = {t('responsiblePersonKz')} />
-                                <EditorText changeText = { changeResponsiblePersonEn } text = {responsiblePersonEn} title = {t('responsiblePersonEn')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_presence_ru} register = {register} name = 'water_presence_ru' title = {t('responsiblePersonRu')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_presence_kk} register = {register} name = 'water_presence_kk' title = {t('responsiblePersonKz')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.water_presence_en} register = {register} name = 'water_presence_en' title = {t('responsiblePersonEn')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors objectCreate-editors__blog">
-                                <EditorText changeText = { changeAmountFunding } text = {amountFunding} title = {t('amountFunding')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.total_funding} register = {register} name = 'total_funding' title = {t('amountFunding')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeDesignerRu } text = {designerRu} title = {t('designerRu')}/>
-                                <EditorText changeText = { changeDesignerKz } text = {designerKz} title = {t('designerKz')}/>
-                                <EditorText changeText = { changeDesignerEn } text = {designerEn} title = {t('designerEn')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.planner_ru} register = {register} name = 'planner_ru' title = {t('designerRu')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.planner_kk} register = {register} name = 'planner_kk' title = {t('designerKz')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.planner_en} register = {register} name = 'planner_en' title = {t('designerEn')}/>
                             </div>
                             <div className = "objectCreate-item objectCreate-editors">
-                                <EditorText changeText = { changeBuilderRu } text = {builderRu} title = {t('builderRu')} />
-                                <EditorText changeText = { changeBuilderKz } text = {builderKz} title = {t('builderKz')}/>
-                                <EditorText changeText = { changeBuilderEn } text = {builderEn} title = {t('builderEn')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.developer_ru} register = {register} name = 'developer_ru' title = {t('builderRu')}/>
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.developer_kk} register = {register} name = 'developer_kk' title = {t('builderKz')} />
+                                <EditorText setValue = {setValue} getValues = {getValues} defaultValue = {data.developer_en} register = {register} name = 'developer_en' title = {t('builderEn')} />
                             </div>
                             <div className="objectCreate-item objectCreate-editors">
-                                <BlogDraft title = {t('draftProjectRu')} changeDraftProject = {changeDraftProjectRu} draftProject = {draftProjectRu} />
-                                <BlogDraft title = {t('draftProjectKz')} changeDraftProject = {changeDraftProjectKz} draftProject = {draftProjectKz} />
-                                <BlogDraft title = {t('draftProjectEn')} changeDraftProject = {changeDraftProjectEn} draftProject = {draftProjectEn} />
+                                <BlogDraft title = {t('draftProjectRu')} changeDraftProject = {changeDraftProjectRu} />
+                                <BlogDraft title = {t('draftProjectKz')} changeDraftProject = {changeDraftProjectKz}/>
+                                <BlogDraft title = {t('draftProjectEn')} changeDraftProject = {changeDraftProjectEn}/>
                             </div>
                         </>
                         }

@@ -1,13 +1,14 @@
 import React from "react";
 import {ObjectsApi} from '../../services/api/objectsApi'
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Loading } from '../../components/loading/indexx';
 
 export const BlogDraft = ({changeDraftProject, title, draftProject}) => {
     const [img, setImg] = React.useState();
-    React.useEffect(() => {
+    const [loading, setLoading] = React.useState(false)
 
-    }, [])
     const sendFile = async (e) => {
+        setLoading(true)
         try {
             let lists = e.target.files[0];
             const data = new FormData();
@@ -22,8 +23,10 @@ export const BlogDraft = ({changeDraftProject, title, draftProject}) => {
             newImg.push(createImg)
             changeDraftProject(newImg)
             setImg(newImg)
+            setLoading(false)
         } catch(error) {
             console.log('sendFile', error)
+            setLoading(false)
         }
     }
     const deleteImg = () => {
@@ -32,7 +35,7 @@ export const BlogDraft = ({changeDraftProject, title, draftProject}) => {
     return (
         <div className = 'objectCreate-draft'>
             <p>{title}</p>
-            <div>
+            <>
                 {
                     draftProject ?
                     <div className = "objectCreate-draft__blog">
@@ -50,17 +53,23 @@ export const BlogDraft = ({changeDraftProject, title, draftProject}) => {
                     </div>
                     :
                     <div className="objectCreate-draft__input">
-                    <input
-                        type = "file"
-                        className = "forms-input__file"
-                        accept = ".jpg, .jpeg, .png"
-                        onChange={(e) => sendFile(e)}
-                    />
+                        <label className = "custom-file__upload" htmlFor = 'img'>
+                            <input
+                                type = "file"
+                                className = "forms-input__file"
+                                accept = ".jpg, .jpeg, .png"
+                                onChange={(e) => sendFile(e)}
+                                id = 'img'
+                            />
+                            <div className = "custom-file__upload-inner">
+                                <p>.jpg .png</p>
+                                <p> Не более 5МВ </p>
+                            </div>
+                        </label>
+                        {loading && <Loading />}
                     </div>
-                }
-                    
-                    
-            </div>
+                }      
+            </>
         </div>
     )
 };
