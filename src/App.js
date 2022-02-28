@@ -8,10 +8,7 @@ import { Users } from './pages/users';
 import { Objects } from './pages/objects';
 import { NotFound } from './pages/404'
 import { CreateObject } from './pages/objects/createObject';
-import { useDispatch } from "react-redux";
-import { FetchGeneral } from './store/ducks/general/actionCreators';
 import { Route, Routes} from "react-router-dom";
-import i18next from 'i18next';
 import './fonts/stylesheet.css'
 import { CreateUser } from './pages/users/create';
 import { UpdateObject } from './pages/objects/updateObject';
@@ -20,11 +17,7 @@ import { EditUser } from './pages/users/userEdit';
 import { useSelector } from "react-redux";
 
 function App() {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(FetchGeneral())
-  }, []);
-
+ 
   const {isAuth} = useSelector((state) => {
     return {
         isAuth: state.user.isAuth,

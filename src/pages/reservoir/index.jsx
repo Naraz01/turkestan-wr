@@ -8,29 +8,15 @@ import { Slider } from "./slider";
 import { useParams } from 'react-router-dom';
 import { GeneralApi } from "../../services/api/generalApi";
 import { useTranslation } from "react-i18next";
-import i18next from 'i18next';
 import { Helmet } from "react-helmet";
 import { Footer } from "../../components/footer";
 import { Loading } from "../../components/loading/indexx";
 
 export const Reservoir = () => {
     const [data, setData] = React.useState();
-    const {t} = useTranslation()
+    const {t, i18next } = useTranslation()
     const {id} = useParams()
-    console.log(data)
-    const getData = async () => {
-        try {
-            const obj = await GeneralApi.fetchFindOne(id);
-            setData(obj.content)
-            console.log(obj.content)
-        } catch(error) {
-            console.log('fetchFindOne', error)
-        }
-    }
-    React.useEffect(() => {
-        getData()
-    }, [id, i18next.language])
-    /*
+    
     React.useEffect(() => {
         (async () => {
             try {
@@ -42,7 +28,7 @@ export const Reservoir = () => {
             }
         })()
     }, [id, i18next.language])
-    */
+    
     if (!data) {
         return (
             <div className='reservoir'>
