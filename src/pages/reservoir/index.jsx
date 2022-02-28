@@ -8,14 +8,16 @@ import { Slider } from "./slider";
 import { useParams } from 'react-router-dom';
 import { GeneralApi } from "../../services/api/generalApi";
 import { useTranslation } from "react-i18next";
+import i18next from 'i18next';
 import { Helmet } from "react-helmet";
 import { Footer } from "../../components/footer";
 import { Loading } from "../../components/loading/indexx";
 
 export const Reservoir = () => {
     const [data, setData] = React.useState();
-    const {t, i18next } = useTranslation()
+    const {t} = useTranslation()
     const {id} = useParams()
+   
     
     React.useEffect(() => {
         (async () => {
